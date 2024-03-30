@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.messaging";
+option java_outer_classname = "MessagingProto";
+
+service MessagingService {
+    rpc SendMessage(MessageRequest) returns (MessageResponse);
+    rpc ReceiveMessages(UserRequest) returns (stream MessageResponse);
+}
+
+message MessageRequest {
+    string sender = 1;
+    string recipient = 2;
+    string text = 3;
+}
+
+message UserRequest {
+    string user = 1;
+}
+
+message MessageResponse {
+    string sender = 1;
+    string text = 2;
+}
